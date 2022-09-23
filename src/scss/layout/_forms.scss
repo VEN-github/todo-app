@@ -1,0 +1,105 @@
+@use '../abstracts/' as *;
+@use '../components/media' as *;
+
+%input {
+  all: unset;
+}
+
+.circle {
+  width: 20px;
+  height: 18px;
+  //border: 1px solid $light-grayish-blue;
+  border: 1px solid $very-dark-grayish-blue;
+  border-radius: 50%;
+}
+
+.todo-form {
+  @include flex(flex, flex-start, center);
+  gap: 0 10px;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  //background-color: $very-light-gray;
+  background-color: $very-dark-desaturated-blue;
+  border-radius: 5px;
+  cursor: text;
+
+  &__input {
+    @extend %input;
+    width: 100%;
+    font-size: 0.75rem;
+    //color: $very-dark-grayish-blue;
+    color: $light-grayish-blue;
+    //caret-color: $very-dark-grayish-blue;
+    caret-color: $bright-blue;
+  }
+}
+
+.todo__lists-checkbox {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  width: 18px;
+  height: 18px;
+  //border: 1px solid $light-grayish-blue;
+  border: 1px solid $very-dark-grayish-blue;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $bright-blue;
+  }
+
+  &:checked {
+    background: linear-gradient($gradient);
+    border: none;
+
+    & + .todo__lists-text {
+      text-decoration: line-through;
+      //color: $light-grayish-blue;
+      color: $dark-grayish-blue;
+    }
+
+    &::after {
+      display: block;
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-image: url('~@/assets/images/icon-check.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+@include md {
+  .todo-form__input {
+    font-size: 1rem;
+  }
+
+  .circle {
+    width: 27px;
+    height: 24px;
+  }
+
+  .todo__lists-checkbox {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@include xl {
+  .todo-form__input {
+    font-size: 1.125rem;
+  }
+}

@@ -1,0 +1,198 @@
+@use '../abstracts/' as *;
+@use './media' as *;
+
+.todo {
+  position: relative;
+  z-index: 1;
+  margin-top: -90px;
+
+  #{&}__heading {
+    @include flex(flex, space-between, center);
+    margin-bottom: 1.5rem;
+
+    &-title {
+      font-size: 1.25rem;
+      font-weight: weight(bold);
+      letter-spacing: 10px;
+      text-transform: uppercase;
+      color: $very-light-gray;
+    }
+  }
+
+  &__lists {
+    font-size: 0.75rem;
+    font-weight: weight(regular);
+    //background-color: $very-light-gray;
+    background-color: $very-dark-desaturated-blue;
+    border-radius: 5px;
+
+    #{&}-data {
+      position: relative;
+      @include flex(flex, flex-start, center);
+      width: 100%;
+      padding: 0.95rem 1rem;
+      //border-bottom: 1px solid $light-grayish-blue;
+      border-bottom: 1px solid $very-dark-grayish-blue;
+      user-select: none;
+    }
+
+    #{&}-text {
+      flex-grow: 1;
+      margin-left: 1.75rem;
+      //color: $very-dark-grayish-blue;
+      color: $light-grayish-blue;
+      cursor: pointer;
+    }
+
+    #{&}-action {
+      @include flex(flex, space-between, center);
+      font-weight: weight(bold);
+      padding: 0.95rem 1rem;
+      color: $dark-grayish-blue;
+    }
+  }
+
+  &__icon {
+    width: 11px;
+
+    &--theme {
+      width: 15px;
+    }
+  }
+
+  &-action__filter {
+    display: none;
+  }
+
+  &__filter {
+    @include flex(flex, center, center);
+    gap: 0 10px;
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
+    font-weight: weight(bold);
+    //background-color: $very-light-gray;
+    background-color: $very-dark-desaturated-blue;
+    color: $dark-grayish-blue;
+    border-radius: 5px;
+  }
+
+  &__category {
+    transition: color 0.5s ease;
+    cursor: pointer;
+  }
+
+  #{&}__drag {
+    margin: 1.75rem 0;
+    font-size: 0.75rem;
+    font-weight: weight(regular);
+    text-align: center;
+    color: $dark-grayish-blue;
+  }
+}
+
+@include sm {
+  .todo {
+    margin-top: -160px;
+  }
+}
+
+@include md {
+  .todo {
+    margin-top: -180px;
+
+    #{&}__heading {
+      &-title {
+        font-size: 1.75rem;
+      }
+    }
+
+    &__lists {
+      font-size: 1rem;
+
+      #{&}-text {
+        margin-left: 2.2rem;
+      }
+    }
+
+    &__icon {
+      width: 13px;
+
+      &--theme {
+        width: 20px;
+      }
+    }
+
+    &__filter {
+      font-size: 1rem;
+    }
+
+    #{&}__drag {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+@include lg {
+  .todo {
+    &-action {
+      &__filter {
+        @include flex(flex, center, center);
+        gap: 0 10px;
+      }
+
+      &__category {
+        transition: color 0.5s ease;
+        cursor: pointer;
+
+        &:hover {
+          color: $very-dark-grayish-blue;
+        }
+
+        &--active {
+          color: $bright-blue;
+        }
+      }
+    }
+
+    &__filter {
+      display: none;
+    }
+  }
+}
+
+@include xl {
+  .todo {
+    margin-top: -185px;
+
+    #{&}__heading {
+      &-title {
+        font-size: 2rem;
+      }
+    }
+
+    &__lists {
+      font-size: 1.125rem;
+
+      #{&}-text {
+        margin-left: 2.2rem;
+      }
+
+      #{&}-action {
+        font-size: 1rem;
+      }
+    }
+
+    &__icon {
+      width: 15px;
+
+      &--theme {
+        width: 25px;
+      }
+    }
+
+    #{&}__drag {
+      font-size: 0.938rem;
+    }
+  }
+}

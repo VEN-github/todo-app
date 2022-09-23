@@ -1,0 +1,41 @@
+@use './typography' as *;
+@use '../abstracts/' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::before {
+  @extend *;
+}
+
+*::after {
+  @extend *;
+}
+
+body {
+  font-family: $font-stack;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+ul {
+  list-style-type: none;
+}
+
+#app {
+  min-height: 100vh;
+  background-color: $very-dark-blue;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+  color: $light-grayish-blue;
+
+  & a {
+    color: hsl(228, 45%, 44%);
+  }
+}

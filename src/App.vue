@@ -1,26 +1,27 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <main>
+    <!-- <img src="./assets/images/bg-desktop-light.jpg" alt="Banner image" class="banner" /> -->
+    <img src="./assets/images/bg-desktop-dark.jpg" alt="Banner image" class="banner" />
+    <div class="container">
+      <TodoLists />
+      <div class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+        Coded by <a href="https://www.frontendmentor.io/profile/VEN-github">Raven Barrogo</a>.
+      </div>
+    </div>
+  </main>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import TodoLists from './components/TodoLists.vue';
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    TodoLists,
+  },
+  // mounted() {
+  //   this.$nextTick(() => document.getElementById('app').classList.add('dark'));
+  // },
+};
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

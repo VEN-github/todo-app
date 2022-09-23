@@ -1,0 +1,26 @@
+@use '../abstracts/' as *;
+
+%btn {
+  all: unset;
+  cursor: pointer;
+}
+
+.btn {
+  &-theme {
+    @extend %btn;
+  }
+
+  &-delete {
+    @extend %btn;
+    display: flex;
+  }
+
+  &-clear {
+    @extend %btn;
+    transition: color 0.5s ease;
+
+    &:hover {
+      color: $very-dark-grayish-blue;
+    }
+  }
+}
