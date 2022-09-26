@@ -5,10 +5,11 @@
     <div class="container">
       <TodoLists
         :todos="todos"
-        @add-todo="addTodo($event)"
-        @complete-todo="completeTodo($event)"
-        @delete-todo="deleteTodo($event)"
-        @filter-todos="filterTodos($event)"
+        :categories="categories"
+        @add-todo="addTodo"
+        @complete-todo="completeTodo"
+        @delete-todo="deleteTodo"
+        @filter-todos="filterTodos"
         @clear-completed="clearCompleted"
       />
       <div class="attribution">
@@ -30,6 +31,9 @@ export default {
   computed: {
     todos() {
       return this.$store.getters.getAllTodos;
+    },
+    categories() {
+      return this.$store.getters.getAllCategories;
     },
   },
   created() {

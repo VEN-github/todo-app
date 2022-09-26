@@ -25,27 +25,31 @@
         />
         <p class="todo__empty-text">No todos yet</p>
       </div>
-      <div v-else>
-        <TransitionGroup name="list" tag="ul">
-          <TodoList
-            v-for="todo in todos"
-            :key="todo.id"
-            :todo="todo"
-            @complete-todo="$emit('complete-todo', $event)"
-            @delete-todo="$emit('delete-todo', $event)"
-          />
-        </TransitionGroup>
-        <TodoActions
-          :todos="todos"
-          @filter-todos="$emit('filter-todos', $event)"
-          @clear-completed="$emit('clear-completed')"
+      <TransitionGroup name="list" tag="ul" v-else>
+        <TodoList
+          v-for="todo in todos"
+          :key="todo.id"
+          :todo="todo"
+          @complete-todo="$emit('complete-todo', $event)"
+          @delete-todo="$emit('delete-todo', $event)"
         />
-      </div>
+      </TransitionGroup>
+      <TodoActions
+        :todos="todos"
+        :categories="categories"
+        @filter-todos="$emit('filter-todos', $event)"
+        @clear-completed="$emit('clear-completed')"
+      />
     </ul>
-    <ul class="todo__filter" v-if="todos.length">
-      <TodoFilter @filter-todos="$emit('filter-todos', $event)" />
+    <ul class="todo__filter">
+      <TodoFilter
+        v-for="(category, index) in categories"
+        :key="index"
+        :category="category"
+        @filter-todos="$emit('filter-todos', $event)"
+      />
     </ul>
-    <p class="todo__drag" v-if="todos.length">Drag and drop to reorder list</p>
+    <p class="todo__drag">Drag and drop to reorder list</p>
   </div>
 </template>
 
@@ -58,6 +62,7 @@ export default {
   name: 'TodoLists',
   props: {
     todos: Array,
+    categories: Array,
   },
   components: {
     TodoInput,

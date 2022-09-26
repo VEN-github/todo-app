@@ -1,30 +1,19 @@
 <template>
   <li
     class="todo__category"
-    :class="{ 'todo__category--active': selectedCategory === 'All' }"
-    @click="$emit('filter-todos', 'All')"
+    :class="{ 'todo__category--active': selectedCategory === category }"
+    @click="$emit('filter-todos', category)"
   >
-    All
-  </li>
-  <li
-    class="todo__category"
-    :class="{ 'todo__category--active': selectedCategory === 'Active' }"
-    @click="$emit('filter-todos', 'Active')"
-  >
-    Active
-  </li>
-  <li
-    class="todo__category"
-    :class="{ 'todo__category--active': selectedCategory === 'Completed' }"
-    @click="$emit('filter-todos', 'Completed')"
-  >
-    Completed
+    {{ category }}
   </li>
 </template>
 
 <script>
 export default {
   name: 'TodoFilter',
+  props: {
+    category: String,
+  },
   computed: {
     selectedCategory() {
       return this.$store.getters.getSelectedCategory;

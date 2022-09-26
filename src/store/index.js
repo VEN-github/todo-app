@@ -4,6 +4,7 @@ export default createStore({
   state() {
     return {
       todos: [],
+      categories: ['All', 'Active', 'Completed'],
       selectedCategory: 'All',
     };
   },
@@ -17,6 +18,9 @@ export default createStore({
         default:
           return todos;
       }
+    },
+    getAllCategories({ categories }) {
+      return categories;
     },
     getSelectedCategory({ selectedCategory }) {
       return selectedCategory;

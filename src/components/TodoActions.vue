@@ -4,24 +4,12 @@
     <ul class="todo-action__filter">
       <li
         class="todo-action__category"
-        :class="{ 'todo-action__category--active': selectedCategory === 'All' }"
-        @click="$emit('filter-todos', 'All')"
+        v-for="(category, index) in categories"
+        :key="index"
+        :class="{ 'todo-action__category--active': selectedCategory === category }"
+        @click="$emit('filter-todos', category)"
       >
-        All
-      </li>
-      <li
-        class="todo-action__category"
-        :class="{ 'todo-action__category--active': selectedCategory === 'Active' }"
-        @click="$emit('filter-todos', 'Active')"
-      >
-        Active
-      </li>
-      <li
-        class="todo-action__category"
-        :class="{ 'todo-action__category--active': selectedCategory === 'Completed' }"
-        @click="$emit('filter-todos', 'Completed')"
-      >
-        Completed
+        {{ category }}
       </li>
     </ul>
     <button class="btn-clear" @click="$emit('clear-completed')">Clear Completed</button>
@@ -33,6 +21,7 @@ export default {
   name: 'TodoActions',
   props: {
     todos: Array,
+    categories: Array,
   },
   computed: {
     selectedCategory() {
