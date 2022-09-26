@@ -19,22 +19,20 @@ body {
   font-family: $font-stack;
   font-size: 1.125rem;
   line-height: 1.6;
+  background-color: var(--bg-color);
+  transition: background-color 0.5s cubic-bezier(0.37, 0, 0.63, 1);
 }
 
 ul {
   list-style-type: none;
 }
 
-#app {
-  min-height: 100vh;
-  background-color: $very-dark-blue;
-}
-
 .attribution {
   margin-top: 1.5rem;
   font-size: 11px;
   text-align: center;
-  color: $light-grayish-blue;
+  color: var(--color);
+  transition: color 0.5s cubic-bezier(0.37, 0, 0.63, 1);
 
   & a {
     color: hsl(228, 45%, 44%);

@@ -3,15 +3,11 @@
     <div class="todo__heading">
       <h3 class="todo__heading-title">todo</h3>
       <button class="btn-theme">
-        <!-- <img
-          src="../assets/images/icon-moon.svg"
-          alt="Theme Icon"
-          class="todo__icon todo__icon--theme"
-        /> -->
         <img
-          src="../assets/images/icon-sun.svg"
+          :src="isDark ? './images/icon-sun.svg' : './images/icon-moon.svg'"
           alt="Theme Icon"
           class="todo__icon todo__icon--theme"
+          @click="$emit('toggle-dark')"
         />
       </button>
     </div>
@@ -26,13 +22,13 @@
         <p class="todo__empty-text">No todos yet</p>
       </div>
       <TransitionGroup name="list" tag="ul" v-else>
-        <TodoList
-          v-for="todo in todos"
-          :key="todo.id"
-          :todo="todo"
-          @complete-todo="$emit('complete-todo', $event)"
-          @delete-todo="$emit('delete-todo', $event)"
-        />
+        <div v-for="todo in todos" :key="todo.id">
+          <TodoList
+            :todo="todo"
+            @complete-todo="$emit('complete-todo', $event)"
+            @delete-todo="$emit('delete-todo', $event)"
+          />
+        </div>
       </TransitionGroup>
       <TodoActions
         :todos="todos"
@@ -63,6 +59,7 @@ export default {
   props: {
     todos: Array,
     categories: Array,
+    isDark: Boolean,
   },
   components: {
     TodoInput,
@@ -70,6 +67,13 @@ export default {
     TodoActions,
     TodoFilter,
   },
-  emits: ['add-todo', 'complete-todo', 'delete-todo', 'filter-todos', 'clear-completed'],
+  emits: [
+    'add-todo',
+    'complete-todo',
+    'delete-todo',
+    'filter-todos',
+    'clear-completed',
+    'toggle-dark',
+  ],
 };
 </script>

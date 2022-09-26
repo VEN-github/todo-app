@@ -33,33 +33,33 @@
     &-text {
       font-size: 1.5rem;
       font-weight: weight(regular);
-      color: $light-grayish-blue;
+      color: var(--color);
+      transition: color 0.5s cubic-bezier(0.37, 0, 0.63, 1);
     }
   }
 
   &__lists {
     font-size: 0.75rem;
     font-weight: weight(regular);
-    //background-color: $very-light-gray;
-    background-color: $very-dark-desaturated-blue;
+    background-color: var(--bg-card);
     border-radius: 5px;
+    transition: background-color 0.5s cubic-bezier(0.37, 0, 0.63, 1);
 
     #{&}-data {
       position: relative;
       @include flex(flex, flex-start, center);
       width: 100%;
       padding: 0.95rem 1rem;
-      //border-bottom: 1px solid $light-grayish-blue;
-      border-bottom: 1px solid $very-dark-grayish-blue;
+      border-bottom: 1px solid var(--border-color);
       user-select: none;
+      transition: border-color 0.5s cubic-bezier(0.37, 0, 0.63, 1);
     }
 
     #{&}-text {
       flex-grow: 1;
       margin-left: 1.75rem;
-      //color: $very-dark-grayish-blue;
-      color: $light-grayish-blue;
-      //cursor: pointer;
+      color: var(--color);
+      transition: color 0.5s cubic-bezier(0.37, 0, 0.63, 1);
     }
 
     #{&}-action {
@@ -93,10 +93,10 @@
     padding: 0.75rem 1rem;
     font-size: 0.75rem;
     font-weight: weight(bold);
-    //background-color: $very-light-gray;
-    background-color: $very-dark-desaturated-blue;
+    background-color: var(--bg-card);
     color: $dark-grayish-blue;
     border-radius: 5px;
+    transition: background-color 0.5s cubic-bezier(0.37, 0, 0.63, 1);
   }
 
   &__category {
