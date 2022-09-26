@@ -15,13 +15,39 @@
         />
       </button>
     </div>
-    <TodoInput />
+    <TodoInput @add-todo="$emit('add-todo', $event)" />
     <ul class="todo__lists">
-      <TodoList />
-      <TodoActions />
+      <div class="todo__empty" v-if="!todos.length">
+        <img
+          src="../assets/images/empty-todos.svg"
+          alt="Empty Todos"
+          class="todo__empty-illustration"
+        />
+        <p class="todo__empty-text">No todos yet</p>
+      </div>
+      <TransitionGroup name="list" tag="ul" v-else>
+        <TodoList
+          v-for="todo in todos"
+          :key="todo.id"
+          :todo="todo"
+          @complete-todo="$emit('complete-todo', $event)"
+          @delete-todo="$emit('delete-todo', $event)"
+        />
+      </TransitionGroup>
+      <TodoActions
+        :todos="todos"
+        :categories="categories"
+        @filter-todos="$emit('filter-todos', $event)"
+        @clear-completed="$emit('clear-completed')"
+      />
     </ul>
     <ul class="todo__filter">
-      <TodoFilter />
+      <TodoFilter
+        v-for="(category, index) in categories"
+        :key="index"
+        :category="category"
+        @filter-todos="$emit('filter-todos', $event)"
+      />
     </ul>
     <p class="todo__drag">Drag and drop to reorder list</p>
   </div>
@@ -34,11 +60,16 @@ import TodoActions from './TodoActions.vue';
 import TodoFilter from './TodoFilter.vue';
 export default {
   name: 'TodoLists',
+  props: {
+    todos: Array,
+    categories: Array,
+  },
   components: {
     TodoInput,
     TodoList,
     TodoActions,
     TodoFilter,
   },
+  emits: ['add-todo', 'complete-todo', 'delete-todo', 'filter-todos', 'clear-completed'],
 };
 </script>
