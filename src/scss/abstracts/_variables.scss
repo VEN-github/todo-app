@@ -1,21 +1,30 @@
 $bright-blue: hsl(220, 98%, 61%);
 $gradient: hsl(192, 100%, 67%), hsl(280, 87%, 65%);
+$very-light-gray: hsl(0, 0%, 98%);
+$dark-grayish-blue: hsl(234, 11%, 52%);
+$very-dark-grayish-blue: hsl(237, 14%, 26%);
 
 // Light Theme
-$very-light-gray: hsl(0, 0%, 98%);
-$very-light-grayish-blue: hsl(236, 33%, 92%);
-$light-grayish-blue: hsl(233, 11%, 84%);
-$dark-grayish-blue: hsl(236, 9%, 61%);
-$very-dark-grayish-blue: hsl(235, 19%, 35%);
+[data-theme='light'] {
+  --bg-color: hsl(236, 33%, 92%);
+  --bg-card: hsl(0, 0%, 98%);
+  --border-color: hsl(234, 39%, 85%);
+  --color: hsl(235, 19%, 35%);
+  --hover-color: hsl(233, 14%, 35%);
+  --caret-color: hsl(235, 19%, 35%);
+  --checked-color: hsl(234, 39%, 85%);
+}
 
 // Dark Theme
-$very-dark-blue: hsl(235, 21%, 11%);
-$very-dark-desaturated-blue: hsl(235, 24%, 19%);
-$light-grayish-blue: hsl(234, 39%, 85%);
-$light-grayish-blue-hover: hsl(236, 33%, 92%);
-$dark-grayish-blue: hsl(234, 11%, 52%);
-$very-dark-grayish-blue: hsl(233, 14%, 35%);
-$very-dark-grayish-blue: hsl(237, 14%, 26%);
+[data-theme='dark'] {
+  --bg-color: hsl(235, 21%, 11%);
+  --bg-card: hsl(235, 24%, 19%);
+  --border-color: hsl(235, 19%, 35%);
+  --color: hsl(233, 11%, 84%);
+  --hover-color: hsl(233, 14%, 35%);
+  --caret-color: hsl(220, 98%, 61%);
+  --checked-color: hsl(234, 11%, 52%);
+}
 
 // breakpoints
 $sm: 360px;

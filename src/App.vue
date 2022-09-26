@@ -1,16 +1,21 @@
 <template>
   <main>
-    <!-- <img src="./assets/images/bg-desktop-light.jpg" alt="Banner image" class="banner" /> -->
-    <img src="./assets/images/bg-desktop-dark.jpg" alt="Banner image" class="banner" />
+    <img
+      :src="isDark ? './images/bg-desktop-dark.jpg' : './images/bg-desktop-light.jpg'"
+      alt="Banner image"
+      class="banner"
+    />
     <div class="container">
       <TodoLists
         :todos="todos"
         :categories="categories"
+        :isDark="isDark"
         @add-todo="addTodo"
         @complete-todo="completeTodo"
         @delete-todo="deleteTodo"
         @filter-todos="filterTodos"
         @clear-completed="clearCompleted"
+        @toggle-dark="toggleDark"
       />
       <div class="attribution">
         Challenge by
@@ -34,6 +39,9 @@ export default {
     },
     categories() {
       return this.$store.getters.getAllCategories;
+    },
+    isDark() {
+      return this.$store.getters.isDark;
     },
   },
   created() {
@@ -59,9 +67,18 @@ export default {
     clearCompleted() {
       this.$store.dispatch('clearCompleted');
     },
+    toggleDark() {
+      this.$store.dispatch('toggleDark');
+    },
   },
-  // mounted() {
-  //   this.$nextTick(() => document.getElementById('app').classList.add('dark'));
-  // },
+  watch: {
+    isDark(value) {
+      if (value) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        return;
+      }
+      document.documentElement.setAttribute('data-theme', 'light');
+    },
+  },
 };
 </script>

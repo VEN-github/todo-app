@@ -6,6 +6,7 @@ export default createStore({
       todos: [],
       categories: ['All', 'Active', 'Completed'],
       selectedCategory: 'All',
+      isDark: false,
     };
   },
   getters: {
@@ -25,6 +26,9 @@ export default createStore({
     getSelectedCategory({ selectedCategory }) {
       return selectedCategory;
     },
+    isDark({ isDark }) {
+      return isDark;
+    },
   },
   mutations: {
     setTodos(state, payload) {
@@ -33,10 +37,14 @@ export default createStore({
     setSelectedCategory(state, payload) {
       state.selectedCategory = payload;
     },
+    setDarkMode(state, payload) {
+      state.isDark = payload;
+    },
   },
   actions: {
     init({ dispatch }) {
       dispatch('initTodos');
+      dispatch('loadDarkMode');
     },
     initTodos({ commit, dispatch }) {
       const todoLists = [
@@ -123,6 +131,19 @@ export default createStore({
       let todos = await JSON.parse(localStorage.getItem('todos'));
       todos.filter(todo => todo.completed).forEach(todo => todos.splice(todos.indexOf(todo), 1));
       dispatch('storeTodos', todos);
+    },
+    toggleDark({ dispatch, state }) {
+      localStorage.setItem('isDark', JSON.stringify(!state.isDark));
+      dispatch('loadDarkMode');
+    },
+    loadDarkMode: async ({ state, commit }) => {
+      let dark = await localStorage.getItem('isDark');
+
+      if (dark) {
+        commit('setDarkMode', JSON.parse(dark));
+        return;
+      }
+      localStorage.setItem('isDark', JSON.stringify(state.isDark));
     },
   },
 });
