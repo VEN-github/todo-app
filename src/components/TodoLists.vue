@@ -22,11 +22,19 @@
         <p class="todo__empty-text">No todos yet</p>
       </div>
       <TransitionGroup name="list" tag="ul" v-else>
-        <div v-for="todo in todos" :key="todo.id">
+        <div
+          v-for="(todo, index) in todos"
+          :key="todo.id"
+          @drop="$emit('on-drop', { event: $event, index: index })"
+          @dragenter.prevent
+          @dragover.prevent
+        >
           <TodoList
             :todo="todo"
+            draggable="true"
             @complete-todo="$emit('complete-todo', $event)"
             @delete-todo="$emit('delete-todo', $event)"
+            @start-drag="$emit('start-drag', $event)"
           />
         </div>
       </TransitionGroup>
@@ -74,6 +82,8 @@ export default {
     'filter-todos',
     'clear-completed',
     'toggle-dark',
+    'start-drag',
+    'on-drop',
   ],
 };
 </script>
