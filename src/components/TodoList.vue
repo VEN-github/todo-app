@@ -1,5 +1,5 @@
 <template>
-  <li class="todo__lists-data">
+  <li class="todo__lists-data" @dragstart="$emit('start-drag', { event: $event, todoId: todo.id })">
     <input
       type="checkbox"
       class="todo__lists-checkbox"
@@ -19,6 +19,6 @@ export default {
   props: {
     todo: Object,
   },
-  emits: ['complete-todo', 'delete-todo'],
+  emits: ['complete-todo', 'delete-todo', 'start-drag'],
 };
 </script>

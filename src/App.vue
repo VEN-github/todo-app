@@ -16,6 +16,8 @@
         @filter-todos="filterTodos"
         @clear-completed="clearCompleted"
         @toggle-dark="toggleDark"
+        @start-drag="startDrag"
+        @on-drop="onDrop"
       />
       <div class="attribution">
         Challenge by
@@ -69,6 +71,19 @@ export default {
     },
     toggleDark() {
       this.$store.dispatch('toggleDark');
+    },
+    startDrag({ event, todoId }) {
+      event.dataTransfer.dropEffect = 'move';
+      event.dataTransfer.effectAllowed = 'move';
+      event.dataTransfer.setData('todoId', todoId);
+    },
+    onDrop({ event, index }) {
+      const todoId = event.dataTransfer.getData('todoId');
+      const todo = this.todos.find(todo => todo.id == todoId);
+      const selected = this.todos.splice(index, 1, todo);
+      this.todos.splice(index, 1, todo);
+      this.todos.splice(this.todos.indexOf(todo), 1, selected[0]);
+      this.$store.dispatch('storeTodos', this.todos);
     },
   },
   watch: {
